@@ -1,219 +1,33 @@
-# Catapult & Blade ⚔️
+# Catapult & Blade
 
-> *Deutsch unten — [Zur deutschen Version](#-katapult--klinge-deutsch)*
+3D-браузерная игра о рыцаре на поле боя. Переживайте волны врагов, выбирайте улучшения, садитесь на коня, стреляйте из катапульты и собирайте отряд союзников.
 
-A 3D medieval browser game built with [Three.js](https://threejs.org/). You are a
-knight on the battlefield: survive the waves, choose upgrades, ride a horse, fire a
-catapult and recruit a caravan of allied knights.
+## Возможности
 
-**The game was created entirely by Justus Dütscher (10 years old) — all by himself.** 🎉
-His dad put the prototype into this repository and used **AI (Claude / Claude Code)**
-to tidy it up — structure, modularization and German/English (i18n) support.
-**The gameplay itself is unchanged — it is Justus's game.**
+- три режима игры;
+- волны врагов и система улучшений;
+- конь, лук и катапульта;
+- процедурная музыка и звуки;
+- немецкая и английская локализации;
+- управление на компьютере и планшете;
+- запуск через Three.js.
 
-<p align="center">
-  <a href="https://jumavegames.itch.io/catapult-and-blade">
-    <img src="screenshots/cover.png" alt="Catapult &amp; Blade" width="630">
-  </a>
-</p>
+## Управление
 
-<p align="center"><b>▶ Play it in your browser on <a href="https://jumavegames.itch.io/catapult-and-blade">itch.io</a></b></p>
+WASD — движение, мышь — обзор, Space — оружие, E — подобрать камень, F — катапульта, Q — смена оружия, R — конь, H — лечение, Shift — ускорение.
 
----
-
-## ✨ Features
-
-- **Three game modes:** Classic Easy, Hardcore (enemy king only) and City Caravan
-  (escort run without waves).
-- **Wave progression with upgrades:** the better you clear a wave, the stronger the
-  two upgrades you get to choose from.
-- **Unlockables:** horse (wave 2), bow (wave 4), your own catapult (wave 6) and
-  automatic catapult crews (wave 8).
-- **Heraldry:** pick your own crest; every enemy army gets a contrasting one.
-- **Procedural audio:** all music and sound effects are generated in code
-  (lute, drone, flute, shawm, frame drum).
-- **Multilingual:** German 🇩🇪 and English 🇬🇧, auto-detected from the browser with an
-  in-game language switch.
-- **PC and tablet/touch controls**, auto-detected.
-- **Runs fully in the browser** — only [Three.js](https://threejs.org/) is loaded from a CDN.
-
-## 🎮 Controls (PC)
-
-| Key | Action |
-| --- | --- |
-| `W` `A` `S` `D` | Move / ride |
-| Mouse | Look around |
-| Left click / `Space` | Use active weapon |
-| Right click | Raise shield |
-| `E` | Pick up stone / load catapult |
-| `F` | Fire catapult |
-| `Q` | Switch sword/bow (from wave 4) |
-| `R` | Mount / dismount horse |
-| `H` | Drink healing potion |
-| `Shift` | Sprint / gallop |
-
-On tablets, on-screen joystick and buttons are shown automatically.
-
-## 🚀 Run it locally
-
-The game uses ES modules and loads Three.js from a CDN, so it must be served over
-HTTP (opening `index.html` via `file://` will not work).
-
-**Option A — Node (recommended):**
+## Запуск
 
 ```bash
 npm start
 ```
 
-This serves the folder on a local port (printed in the terminal). Open the shown URL.
+Или `python3 -m http.server 8000`. ES-модули требуют HTTP-сервера.
 
-**Option B — Python:**
+## Команда
 
-```bash
-python -m http.server 8000
-```
+Поддержка репозитория: **SamosGames Team**.
 
-Then open <http://localhost:8000>.
+## Лицензии и attribution
 
-**Option C — VS Code:** use the *Live Server* extension and "Go Live".
-
-> Three.js is bundled locally (`src/vendor/three.module.js`), so **no internet is
-> needed** — the game runs fully offline. You only need to serve it over HTTP (not
-> `file://`), because browsers block ES modules loaded from the filesystem.
-
-## 🖼️ Screenshots
-
-| Menu | In-game |
-| --- | --- |
-| ![Menu (EN)](screenshots/menu-en.png) | ![In-game (EN)](screenshots/game-en.png) |
-
-Regenerate them (German + English, menu + in-game) with:
-
-```bash
-npm run shots      # -> screenshots/{menu,game}-{de,en}.png
-```
-
-## ▶ Play
-
-▶ **Play it now in your browser on [itch.io](https://jumavegames.itch.io/catapult-and-blade).**
-
-Want to host it yourself? `npm run build` bundles the static files into a `.zip` in
-`dist/` — any static web host works (`index.html` is at the zip root).
-
-## 🛠️ npm scripts
-
-| Command | What it does |
-| --- | --- |
-| `npm start` | Serve the game locally on <http://localhost:8000> |
-| `npm run build` | Bundle the static files into a `.zip` in `dist/` |
-| `npm run shots` | Generate DE/EN menu + in-game screenshots |
-| `npm test` | Run the i18n runtime test |
-
-## 📁 Project structure
-
-```
-Catapult-Blade/
-├── index.html               # Entry point (HTML shell + screens, data-i18n markup)
-├── src/
-│   ├── css/styles.css       # All styling
-│   ├── i18n/                # index.js (t/applyTranslations), de.js, en.js
-│   ├── data/textures.js     # Embedded base64 textures
-│   ├── three.js             # Re-export of the locally bundled Three.js
-│   ├── vendor/              # Bundled Three.js (no CDN needed)
-│   ├── config.js            # Constants, palettes, spawn points
-│   ├── version.js           # Single source of the version string
-│   ├── splash.js            # Intro splash screen
-│   └── game/main.js         # Game engine
-├── prototype/               # The original single-file prototype (archive)
-├── tools/                   # Dev server, zip build, screenshots, migration, tests
-├── CHANGELOG.md
-├── README.md
-├── AGENTS.md                # Notes for AI/code agents
-└── LICENSE                  # MIT
-```
-
-## 🌍 Languages
-
-The language is auto-detected from the browser (`navigator.language`) and can be
-switched at any time with the language buttons in the menu. To add a language, copy
-`src/i18n/en.js`, translate the values, and register it in `src/i18n/index.js`.
-
-## 📜 License
-
-[MIT](LICENSE) — © 2026 Justus Dütscher.
-
----
-
-# 🇩🇪 Katapult & Klinge (Deutsch)
-
-Ein 3D-Mittelalter-Browserspiel mit [Three.js](https://threejs.org/). Du bist ein
-Ritter auf dem Schlachtfeld: Überstehe die Wellen, wähle Upgrades, reite ein Pferd,
-feuere ein Katapult ab und sammle eine Karawane verbündeter Ritter ein.
-
-**Das Spiel wurde komplett von Justus Dütscher (10 Jahre) ganz alleine erstellt.** 🎉
-Sein Papa hat den Prototyp in dieses Repository gepackt und mit **KI (Claude / Claude Code)**
-aufräumen lassen — Struktur, Modularisierung, Deutsch/Englisch (i18n).
-**Das Spiel selbst ist unverändert — es ist Justus' Spiel.**
-
-## ✨ Funktionen
-
-- **Drei Spielmodi:** Classic Easy, Hardcore (nur feindlicher König) und Stadtkarawane
-  (Begleit-Modus ohne Wellen).
-- **Wellen mit Upgrades:** Je besser du eine Welle überstehst, desto stärker sind die
-  zwei angebotenen Verbesserungen.
-- **Freischaltungen:** Pferd (Welle 2), Bogen (Welle 4), eigenes Katapult (Welle 6)
-  und automatische Katapult-Truppen (Welle 8).
-- **Wappen:** Wähle dein eigenes Wappen; jeder Gegner bekommt ein kontrastierendes.
-- **Prozedurale Musik & Sounds:** komplett im Code erzeugt (Laute, Bordun, Flöte,
-  Schalmei, Rahmentrommel).
-- **Mehrsprachig:** Deutsch 🇩🇪 und Englisch 🇬🇧, automatisch erkannt, im Spiel umschaltbar.
-- **PC- und Tablet/Touch-Steuerung**, automatisch erkannt.
-- **Läuft komplett im Browser** — nur Three.js wird per CDN geladen.
-
-## 🎮 Steuerung (PC)
-
-| Taste | Aktion |
-| --- | --- |
-| `W` `A` `S` `D` | Laufen / reiten |
-| Maus | Blickrichtung drehen |
-| Linksklick / `Leertaste` | Aktive Waffe benutzen |
-| Rechtsklick | Schild halten |
-| `E` | Stein aufnehmen / Katapult laden |
-| `F` | Katapult abfeuern |
-| `Q` | Schwert/Bogen wechseln (ab Welle 4) |
-| `R` | Pferd besteigen / absteigen |
-| `H` | Heiltrank benutzen |
-| `Shift` | Sprint / Galopp |
-
-Auf Tablets erscheinen Joystick und Buttons automatisch.
-
-## 🚀 Lokal starten
-
-Das Spiel nutzt ES-Module und lädt Three.js per CDN — es muss daher über HTTP
-ausgeliefert werden (ein Öffnen per `file://` funktioniert nicht).
-
-**Variante A — Node (empfohlen):**
-
-```bash
-npm start
-```
-
-**Variante B — Python:**
-
-```bash
-python -m http.server 8000
-```
-
-Dann <http://localhost:8000> öffnen.
-
-**Variante C — VS Code:** *Live Server*-Erweiterung und „Go Live".
-
-> Three.js ist lokal enthalten (`src/vendor/three.module.js`) — **kein Internet nötig**,
-> das Spiel läuft komplett offline. Es muss nur über HTTP ausgeliefert werden (nicht
-> `file://`), da Browser ES-Module vom Dateisystem blockieren.
-
-> ▶ **Jetzt spielen:** im Browser auf [itch.io](https://jumavegames.itch.io/catapult-and-blade).
-
-## 📜 Lizenz
-
-[MIT](LICENSE) — © 2026 Justus Dütscher.
+Three.js и сторонние материалы сохраняют собственные лицензии и условия использования. Обязательные сведения об исходном авторстве и лицензиях репозитория сохранены.
